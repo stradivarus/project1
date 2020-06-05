@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+
+{% block main %}
+{{ test }}
+{% if error %}
+<div role="alert" class="alert alert-warning">{{ error }}</div>
+{% else %}
+<div class="container text-left">
+    <div class="row">
+        <div class="col-lg-5">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h1>{{ book.title }}</h1>
+                    <h3>by {{ book.author }}</h3>
+                </li>
+                <li class="list-group-item mb-5">
+                    <table>
+                        <tr>
+                            <td>
+                                <h5>publishing year:</h5>
+                            </td>
+                            <td class="pl-3">
+                                <h5>{{ book.year }}</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>ISBN: </h5>
+                            </td>
+                            <td class="pl-3">
+                                <h5>{{ book.isbn }}</h5>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="list-group-item mt-3 text-center">
+                    {% if not review %}
+                    <button type="button" class="btn btn-lg btn-outline-primary" id="show-review">Leave a review</a>
+                        {% else %}
+                        <div role="alert" class="alert alert-info">You have already reviewed this book =D</div>
+                        {% endif %}
+                </li>
+            </ul>
+            <div id="leave-review">
+                <form action="{{ url_for('book', book_id=book.id) }}" method="post">
+                    <div class="form-group">
+                        <label for="rtitle">Title</label>
+                        <input type="text" class="form-control" id="rtitle" name="title" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="slider">Rating</label>
+                        <input type=range class="custom-range" id="slider" name="slider" min="1" max="5" value="1">
+                        <div class="d-flex justify-content-center">
+                            <span class="badge badge-primary badge-pill slider">1</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rtext">Review</label>
+                        <textarea class="form-control" id="rtext" name="text" rows="6"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary px-3">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col-lg-5">
+            <ul class="list-group list-group-flush mt-4">
+                {% if res %}
+                <li class="list-group-item">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h4>Rating:</h4>
+                                </td>
+                                <td class="pl-3">
+                                    <h4>{{ res["books"][0]["average_rating"] }}</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>based on </h5>
+                                </td>
+                                <td class="pl-3">
+                                    <h5>{{ res["books"][0]["work_ratings_count"] }} ratings</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">data provided for free by <a href="goodreads.com">goodreads.com</a></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </li>
+                {% endif %}
+                <li class="list-group-item mt-2">
+                    <h3>Reviews</h3>
+                    <div id="reviews" class="overflow-auto">
+                        {% if not reviews %}
+                        <div role="alert" class="alert alert-info">No reviews yet.</div>
+                        {% else %}
+                        {% for rev in reviews %}
+                        <div class="review">
+                            <h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>{{ rev.name }}</strong>
+                                    </div>
+                                    <div class="col-auto">
+                                        rated <strong>{{ rev.rating }}</strong> stars
+                                    </div>
+                                </div>
+                            </h5>
+                            <strong class="text-uppercase">{{ rev.title }}</strong>
+                            <p>{{ rev.content }}</p>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#slider").change(function () {
+            $(".slider").text($(this).val());
+        });
+
+        $("#show-review").click(function () {
+            $("#leave-review").show();
+            window.location.href = "#leave-review";
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

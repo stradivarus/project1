@@ -1,0 +1,67 @@
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+#search
+{
+    margin: 50px 0;
+}
+
+#search .form-control
+{
+    width: 300px;
+}
+
+#search button
+{
+    margin-top: 15px;
+    width: 120px;
+}
+
+.alert
+{
+    margin: 10px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+#choose-search
+{
+    margin: 20px 0 10px 0;
+}
+
+#reviews
+{
+    max-height: 450px;
+    margin: 20px -15px;
+    font-size: 15px;
+}
+
+.review
+{
+    border-top: 1px solid #dee2e6;
+    padding: 5px;
+    margin: 10px;
+}
+
+#leave-review .form-control
+{
+    display: block;
+    width: 100%;
+}
+
+#leave-review
+{
+    margin-top: 20px;
+    display: none;
+}
+
+.point
+{
+    cursor: pointer
+}

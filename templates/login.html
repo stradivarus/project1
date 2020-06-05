@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block main %}
+    {% if error %}
+        <div class='alert alert-danger' role='alert'>{{ error }}</div>
+    {% endif %}
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input type="text" name="name" autofocus class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+
+    <div class='mt-4'>
+        Don't have an account yet? <a href="/register">Register</a>.
+    </div>
+{% endblock %}
