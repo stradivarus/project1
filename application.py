@@ -213,3 +213,8 @@ def api(isbn):
             "average_score": float(res["books"][0]["average_rating"])
     })
 
+
+@app.errorhandler(404)
+def handle_error(e):
+    return render_template("error.html"), 404
+

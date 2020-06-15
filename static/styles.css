@@ -65,3 +65,8 @@ main .form-control
 {
     cursor: pointer
 }
+
+.error {
+    margin: -4em auto 0;
+    max-width: 80%;
+}

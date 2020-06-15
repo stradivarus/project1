@@ -50,7 +50,7 @@
                 <form action="{{ url_for('book', book_id=book.id) }}" method="post">
                     <div class="form-group">
                         <label for="rtitle">Title</label>
-                        <input type="text" class="form-control" id="rtitle" name="title" placeholder="Enter title">
+                        <input type="text" class="form-control" id="rtitle" name="title" placeholder="Enter title" required>
                     </div>
                     <div class="form-group">
                         <label for="slider">Rating</label>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="rtext">Review</label>
-                        <textarea class="form-control" id="rtext" name="text" rows="6"></textarea>
+                        <textarea class="form-control" id="rtext" name="text" rows="6" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary px-3">Submit</button>
                 </form>

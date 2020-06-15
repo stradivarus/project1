@@ -1,3 +1,16 @@
-ERROR:
+{% extends "layout.html" %}
 
-{{ message }}
+{% block title %}
+    Taco the dog
+{% endblock %}
+
+
+{% block main %}
+
+    <img class="error" src="https://i.pinimg.com/736x/c4/dc/1d/c4dc1dd726660052cf20baf42d142cb8.jpg" alt="cute 404 not found page">
+
+    <script>
+        $(document).ready(() => $(".error").parents("body").css("background-color", "#F0F0F0"))
+    </script>
+
+{% endblock %}
